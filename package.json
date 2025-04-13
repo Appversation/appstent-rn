@@ -1,0 +1,12 @@
+{
+  "name": "appstent-rn",
+  "private": true,
+  "workspaces": [
+    "packages/appstent-rn-framework",
+    "example"
+  ],
+  "resolutions": {
+    "react": "18.2.0",
+    "react-dom": "18.2.0"
+  }
+}
