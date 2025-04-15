@@ -35,7 +35,7 @@ export const StackContentView: React.FC<StackContentViewProps> = ({
             <AppstentView
                 key={index}
                 viewContent={view}
-                dataProvider={dataProvider}
+                customDataProvider={dataProvider}
             />
         ));
     };

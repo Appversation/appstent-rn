@@ -41,7 +41,7 @@ export const AppstentView: React.FC<AppstentViewProps> = ({
 
     const handlePress = () => {
         if (tapHandler) {
-            tapHandler(viewContent.tapHandlerData);
+            tapHandler(viewContent.get<any>('tapHandlerData'));
         }
     };
 
@@ -74,19 +74,19 @@ export const AppstentView: React.FC<AppstentViewProps> = ({
             case 'hStack':
                 return <StackContentView 
                     viewContent={viewContent} 
-                    direction={StackDirection.x} 
+                    direction={StackDirection.X} 
                     dataProvider={customDataProvider} 
                 />;
             case 'vStack':
                 return <StackContentView 
                     viewContent={viewContent} 
-                    direction={StackDirection.y} 
+                    direction={StackDirection.Y} 
                     dataProvider={customDataProvider} 
                 />;
             case 'zStack':
                 return <StackContentView 
                     viewContent={viewContent} 
-                    direction={StackDirection.z} 
+                    direction={StackDirection.Z} 
                     dataProvider={customDataProvider} 
                 />;
             case 'disclosureGroup':
@@ -112,7 +112,7 @@ export const AppstentView: React.FC<AppstentViewProps> = ({
     return (
         <View 
             style={styles.container}
-            onTouchEnd={viewContent.tapHandlerName ? handlePress : undefined}
+            onTouchEnd={viewContent.get<string>('tapHandlerName') ? handlePress : undefined}
         >
             {view}
         </View>
