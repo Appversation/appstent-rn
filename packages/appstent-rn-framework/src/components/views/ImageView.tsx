@@ -1,15 +1,16 @@
 import React from 'react';
-import { View, StyleSheet } from 'react-native';
+import { StyleSheet } from 'react-native';
 import { ViewContent } from '../../ViewContent';
 import { RemoteImage } from './RemoteImage';
+import { Image } from 'react-native';
 
 interface ImageViewProps {
     viewContent: ViewContent;
 }
 
 export const ImageView: React.FC<ImageViewProps> = ({ viewContent }) => {
-    const url = viewContent.get<string>('url');
-    const contentMode = viewContent.get<string>('contentMode') || 'aspectFit';
+    const url = viewContent.get<string>('source');
+    const contentMode = (viewContent.get<string>('contentMode') || 'aspectFit') as 'aspectFit' | 'aspectFill' | 'scaleToFill';
     const width = viewContent.get<number>('width');
     const height = viewContent.get<number>('height');
 
@@ -17,14 +18,16 @@ export const ImageView: React.FC<ImageViewProps> = ({ viewContent }) => {
         return null;
     }
 
+    const resizeMode = contentMode === 'aspectFit' ? 'contain' : 
+                      contentMode === 'aspectFill' ? 'cover' : 
+                      'stretch';
+                      
     return (
-        <View style={[styles.container, { width, height }]}>
-            <RemoteImage
-                url={url}
-                contentMode={contentMode}
-                style={styles.image}
-            />
-        </View>
+        <Image
+            source={{ uri: url }}
+            style={styles.image}
+            resizeMode={resizeMode}
+        />
     );
 };
 

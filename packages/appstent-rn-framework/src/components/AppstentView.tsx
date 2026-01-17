@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, StyleSheet } from 'react-native';
+import { View, StyleSheet, Text } from 'react-native';
 import { ViewContent } from '../ViewContent';
 import { Divider } from './views/Divider';
 import { SpacerView } from './views/SpacerView';
@@ -52,6 +52,7 @@ export const AppstentView: React.FC<AppstentViewProps> = ({
             case 'spacer':
                 return <SpacerView viewContent={viewContent} />;
             case 'text':
+                return <Text>Test content for TextView</Text>;
                 return <TextView viewContent={viewContent} />;
             case 'link':
                 return <LinkView viewContent={viewContent} />;
@@ -78,6 +79,7 @@ export const AppstentView: React.FC<AppstentViewProps> = ({
                     dataProvider={customDataProvider} 
                 />;
             case 'vStack':
+                return <Text>Test content for vStack</Text>;
                 return <StackContentView 
                     viewContent={viewContent} 
                     direction={StackDirection.Y} 
@@ -114,6 +116,7 @@ export const AppstentView: React.FC<AppstentViewProps> = ({
             style={styles.container}
             onTouchEnd={viewContent.get<string>('tapHandlerName') ? handlePress : undefined}
         >
+            
             {view}
         </View>
     );
